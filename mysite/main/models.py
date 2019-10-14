@@ -49,6 +49,12 @@ class Paper(models.Model):
 	def __str__(self):
 		return self.paper_title
 	
+class Prank(models.Model):
+	prank_title = models.CharField("Image Title", default="prank animal images", max_length=50)
+	prank_image = models.ImageField(upload_to="images/prank/", default="images/h1.jpg", blank=True, null=True)
+
+	def __str__(self):
+		return self.prank_title
 
 # for deleting images too whenever a object has been deleted
 @receiver(post_delete, sender=Paper)

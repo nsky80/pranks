@@ -7,15 +7,16 @@ from django.contrib.sessions.models import Session
 from django.utils import timezone
 from django.http import HttpResponse
 from .forms import FeedbackForm
-from .models import QuesSubject, SubSeries, Paper
+from .models import QuesSubject, SubSeries, Paper, Prank
 import random
 
 def horse(request, quessubject_id, subseries_id, horse_slug):
 	# horse_slug = args[-1]
-	source = "{% static 'main/images/h" + str(random.randint(1, 13)) + ".jpg' %}"
+	source = get_object_or_404(Prank, pk=random.randint(1, 13))
 	# source = str(random.randint(1, 13))
-	# messages.error(request, source)
-	return render(request, template_name="main/content.html", context={"value": source})
+	messages.success(request, "College wali sheet laga liye ki nahi?")
+
+	return render(request, template_name="main/content.html", context={"source": source})
 
 
 def homepage(request):
@@ -28,7 +29,7 @@ def homepage(request):
 def series(request, quessubject_id):
 
 	ques_subject = get_list_or_404(SubSeries, pk=quessubject_id)
-	messages.warning(request, quessubject_id)
+	# messages.warning(request, quessubject_id)
 	return render(request, template_name='main/series.html', context={'series': ques_subject})
 
 

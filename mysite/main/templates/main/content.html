@@ -5,9 +5,9 @@
     {% block content %}
 		<center><h1>Kat Gaya!</h1></center>
         <div class="container">
-		
-            {% load static %}
-            <img class="responsive-img" src="{{value | safe}}">
+            <center>
+                <img class="responsive-img"  src="{{source.prank_image.url}}">
+            </center>
             <br>
         </div>
     {% endblock %}
