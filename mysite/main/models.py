@@ -46,7 +46,6 @@ class Paper(models.Model):
 	# catgory_title = models.ForeignKey(EssayCategory, verbose_name="Category", default=1, on_delete=models.SET_DEFAULT)
 	
 	paper_slug = models.CharField(max_length=50, default=1)
-	paper_image = models.ImageField("Display Image(Optional)", upload_to="images/essay/", default="images/sample-1.jpg", blank=True, null=True)
 	def __str__(self):
 		return self.paper_title
 	

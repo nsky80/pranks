@@ -17,7 +17,7 @@ urlpatterns = [
     path('home', views.homepage, name="homepage"),
 	path('home/category<int:quessubject_id>/', views.series, name='series'),
 
-    # path('home/<int:quessubject_id>/<int:subseries_id>/', views.papers, name='papers'),
+    path('home/category<int:quessubject_id>/<int:subseries_id>/', views.papers, name='papers'),
 
 	path('logout', views.logout_request, name="logout"),
 	path('login', views.login_request, name="login"),

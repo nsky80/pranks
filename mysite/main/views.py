@@ -29,7 +29,6 @@ def series(request, quessubject_id):
 
 
 def papers(request, quessubject_id, subseries_id):
-	messages.warning(request, "Papers")
 	sub_paper = get_list_or_404(Paper, pk=subseries_id)
 	return render(request, template_name="main/papers.html", context={'sub_paper': sub_paper})
 	# try:
