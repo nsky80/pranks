@@ -4,9 +4,13 @@
     {% block content %}
 		<center><h1>{{pagename}}</h1></center>
         <div class="container">
-		
+                <div class="row center">
+                        <a href="/feedback" id="download-button" class="btn-large waves-effect waves-light red pulse"><b>Feedback</b></a>
+                      </div>
             {% load static %}
+            <center>
             <img class="responsive-img" src="{% static 'main/images/under_construction.jpg' %}">
-
+            </center>
+            <br>
         </div>
     {% endblock %}

@@ -27,10 +27,10 @@ def homepage(request):
 				
 
 def series(request, quessubject_id):
-
+	quessubject = get_object_or_404(QuesSubject, pk=quessubject_id)
 	ques_subject = get_list_or_404(SubSeries, pk=quessubject_id)
-	# messages.warning(request, quessubject_id)
-	return render(request, template_name='main/series.html', context={'series': ques_subject})
+	# messages.warning(request, quessubject_id.category_title)
+	return render(request, template_name='main/series.html', context={'series': ques_subject, 'quessubject': quessubject})
 
 
 def papers(request, quessubject_id, subseries_id):
@@ -40,7 +40,7 @@ def papers(request, quessubject_id, subseries_id):
 
 def single_slug(request, single_slug):
 	# First we search any url in category and then series after that main content
-	messages.warning(request, "Kaha!!????")
+	messages.success(request, "You can give feedback!")
 	return render(request = request,
 					template_name='main/under_construction.html',
 					context = {
@@ -51,7 +51,7 @@ def single_slug(request, single_slug):
     # return render(request=request,
 	# 			template_name='main/under_construction.html',
 	# 			context={"pagename":single_slug}
-	# 			)
+	# 			
 
 
 # This is first  page which prompt as website opened

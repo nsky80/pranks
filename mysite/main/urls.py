@@ -9,14 +9,8 @@ app_name = "main"
 urlpatterns = [
 	path('', views.index, name="index"),
 
-
-    # it calls view as: detail(request=<HttpRequest object>, question_id=34)
-    # ex: /polls/5/results/
-
-    # ex: /polls/5/vote/
     path('home', views.homepage, name="homepage"),
 	path('home/category<int:quessubject_id>/', views.series, name='series'),
-
     path('home/category<int:quessubject_id>/<int:subseries_id>/', views.papers, name='papers'),
 	path('home/category<int:quessubject_id>/<int:subseries_id>/<str:horse_slug>', views.horse, name='horse'),
 	path('logout', views.logout_request, name="logout"),
