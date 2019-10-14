@@ -16,7 +16,7 @@
         {% for cat in subject_list %}
         <!-- size 6 on a large screen, 12 on a small, 6 on a med -->
             <div class="col s12 m6 l4">
-                <a href="{{cat.category_slug}}" class="waves-effect waves-light" style="color:#000">
+                <a href="{% url 'main:series' cat.id %}" class="waves-effect waves-light" style="color:#000">
                     <div class="card-panel hoverable" style="height:395px; background-color:#FFFFFF;">
                         <div class="card-image">
                             <img class="responsive-img" src="{{ cat.category_image.url }}" style="width:380px;height: 190px;">

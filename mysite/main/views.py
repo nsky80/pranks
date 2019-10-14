@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
@@ -7,7 +7,7 @@ from django.contrib.sessions.models import Session
 from django.utils import timezone
 from django.http import HttpResponse
 from .forms import FeedbackForm
-from .models import QuesSubject
+from .models import QuesSubject, SubSeries, Paper
 
 
 # def series(request, quessubject_id):
@@ -21,15 +21,44 @@ def homepage(request):
 				 )			 
 				
 
+def series(request, quessubject_id):
+
+	ques_subject = get_list_or_404(SubSeries, pk=quessubject_id)
+	messages.warning(request, quessubject_id)
+	return render(request, template_name='main/series.html', context={'series': ques_subject})
+
+
+def papers(request, quessubject_id, subseries_id):
+	messages.warning(request, "Papers")
+	sub_paper = get_list_or_404(Paper, pk=subseries_id)
+	return render(request, template_name="main/papers.html", context={'sub_paper': sub_paper})
+	# try:
+    #     selected_series = ques_subject.choice_set.get(pk=request.POST['series'])
+    # except (KeyError, NameError):
+    #     # Redisplay the question voting form.
+    #     return render(request, 'main/detail.html', {
+    #         'question': question,
+    #         'error_message': "You didn't select a choice.",
+    #     })
+    # else:
+    #     selected_choice.votes += 1
+    #     selected_choice.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        # return HttpResponseRedirect(reverse('main:results', args=(question.id,)))
+
+
 def single_slug(request, single_slug):
 	# First we search any url in category and then series after that main content
-    return render(request = request,
-                    template_name='main/home.html',
-                    context = {
-                                })
+	messages.warning(request, "Single Slug!!????")
+	return render(request = request,
+					template_name='main/home.html',
+					context = {
+								})
 
 	# If slug doesn't exist anywhere then
-    # messages.warning(request, "Kahaa!!????")
+
     # return render(request=request,
 	# 			template_name='main/under_construction.html',
 	# 			context={"pagename":single_slug}

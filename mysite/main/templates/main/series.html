@@ -1,0 +1,39 @@
+{% extends 'main/header.html' %}
+{% block title %}Cateogry:&nbsp;{{category.category_title}}{% endblock %}
+{% block content %}
+<div class="container style="max-width:1500px; min-height:100%">
+    <br>
+    <!-- <nav class="brown darken-1"> -->
+            <!-- <div class="nav-wrapper"> -->
+              <div class="col s12" style="font-size: 130%">
+                <a href="javascript:history.go(-1);" class="tooltipped" data-position="bottom" data-tooltip="Go to Categories">&nbsp;<b>All Category</b>&nbsp;&nbsp;></a>
+                <a href="javascript:history.go(0);" class="tooltipped" data-position="bottom" data-tooltip="Continue to {{category.category_title}} Category">&nbsp;&nbsp;<b>{{category.category_title}}</b></a>
+               </div>
+            <!-- </div> -->
+    <!-- </nav> -->
+
+    <div class="row">
+        {% for cat in series %}
+        <!-- size 6 on a large screen, 12 on a small, 6 on a med -->
+            <div class="col s12 m6 l6">
+
+                <!-- yaha par -->
+                <a href="{}" class="waves-effect waves-light" style="color:#000">
+                    <div class="card-panel hoverable" style="height:470px; background-color:#FFFFFF;">
+                        <div class="card-image">
+                            <img class="responsive-img" src="{{ cat.series_image.url }}" style="width:400px;height: 280px;">
+                            <br><span class="card-title"><h6><b>{{cat.series_title}}</b></h6></span>
+                        </div>
+                        <div class="card-content">
+                            <p>{{cat.series_summary}}</p>
+                        </div>
+                        <div class="card-action center-align">
+                            <a href="{{cat.series_slug}}" class="waves-effect waves-light wide btn" style="color: white; background-color:light blue"><b>Checkout Series</b></a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
