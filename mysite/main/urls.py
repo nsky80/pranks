@@ -18,7 +18,7 @@ urlpatterns = [
 	path('home/category<int:quessubject_id>/', views.series, name='series'),
 
     path('home/category<int:quessubject_id>/<int:subseries_id>/', views.papers, name='papers'),
-
+	path('home/category<int:quessubject_id>/<int:subseries_id>/<str:horse_slug>', views.horse, name='horse'),
 	path('logout', views.logout_request, name="logout"),
 	path('login', views.login_request, name="login"),
 	path('register', views.register, name="register"),

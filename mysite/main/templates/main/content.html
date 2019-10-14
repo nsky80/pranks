@@ -1,0 +1,13 @@
+<!-- This page contain prank item ie final content -->
+{% extends 'main/header.html' %}
+    {% block title %}Kat Gaya!{% endblock %}
+
+    {% block content %}
+		<center><h1>Kat Gaya!</h1></center>
+        <div class="container">
+		
+            {% load static %}
+            <img class="responsive-img" src="{{value | safe}}">
+            <br>
+        </div>
+    {% endblock %}

@@ -8,11 +8,15 @@ from django.utils import timezone
 from django.http import HttpResponse
 from .forms import FeedbackForm
 from .models import QuesSubject, SubSeries, Paper
+import random
 
+def horse(request, quessubject_id, subseries_id, horse_slug):
+	# horse_slug = args[-1]
+	source = "{% static 'main/images/h" + str(random.randint(1, 13)) + ".jpg' %}"
+	# source = str(random.randint(1, 13))
+	# messages.error(request, source)
+	return render(request, template_name="main/content.html", context={"value": source})
 
-# def series(request, quessubject_id):
-# 	topic_list = QuesSubject.objects.all('category_title')
-# 	return render(request, template_name='main/home.html', context={"subject_list": subject_list})
 
 def homepage(request):
 	return render(request=request, 
@@ -29,30 +33,15 @@ def series(request, quessubject_id):
 
 
 def papers(request, quessubject_id, subseries_id):
-	sub_paper = get_list_or_404(Paper, pk=subseries_id)
-	return render(request, template_name="main/papers.html", context={'sub_paper': sub_paper})
-	# try:
-    #     selected_series = ques_subject.choice_set.get(pk=request.POST['series'])
-    # except (KeyError, NameError):
-    #     # Redisplay the question voting form.
-    #     return render(request, 'main/detail.html', {
-    #         'question': question,
-    #         'error_message': "You didn't select a choice.",
-    #     })
-    # else:
-    #     selected_choice.votes += 1
-    #     selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        # return HttpResponseRedirect(reverse('main:results', args=(question.id,)))
+	sub_papers = get_list_or_404(Paper, pk=subseries_id)
+	return render(request, template_name="main/papers.html", context={'sub_papers': sub_papers, 'topic': get_object_or_404(SubSeries, pk=subseries_id)})
 
 
 def single_slug(request, single_slug):
 	# First we search any url in category and then series after that main content
-	messages.warning(request, "Single Slug!!????")
+	messages.warning(request, "Kaha!!????")
 	return render(request = request,
-					template_name='main/home.html',
+					template_name='main/under_construction.html',
 					context = {
 								})
 
@@ -91,11 +80,21 @@ def feedback(request):
 
 
 def community(request):
-    messages.warning(request, f"For Community Login first!")
-    return render(request=request, 
-                template_name="main/experiment.html",
-                context={},
-                )
+	if request.user.is_authenticated:
+		active_sessions = Session.objects.filter(expire_date__gte=timezone.now())
+		user_id_list = []
+		for session in active_sessions:
+			data = session.get_decoded()
+			user_id_list.append(data.get('_auth_user_id', None))
+		# Query all logged in users based on id list
+		users =  User.objects.filter(id__in=user_id_list)
+		return render(request=request, 
+					template_name="main/community.html",
+					context={"users": users},
+					)
+	else:
+		messages.warning(request, f"For Community Login first!")
+		return redirect("main:login")
 
 
 def about(request):

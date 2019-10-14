@@ -1,0 +1,28 @@
+{% extends 'main/header.html' %}
+    {% block title %}Question Papers | Explore & ask{% endblock %}
+
+    {% block content %}
+        <center><h1 style="margin: 15px;"><b>Question Based on {{topic.series_title}}</b></h1></center>
+        {% load static %}
+        <div class="container">
+		    <h6><b>List of Papers are: </b></h6>
+
+            <ul class="collection">
+                {% for u in sub_papers %}
+                    <li class="collection-item avatar">
+                      <img src="{% static 'main/images/back1.jpg' %}" alt="" class="circle">
+                      <span class="title"><b><a href="{{ request.get_full_path }}{{u.paper_slug}}">{{u.paper_title}}</a></b></span>
+                      <p>Published on: {{u.paper_published}} 
+                          <br>
+                          Topic: {{u.series_title.series_title}}
+                      </p>
+                      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                    </li>
+                {% endfor %}
+            </ul>
+                      
+            <!-- <img class="responsive-img" src=" static 'main/images/under_construction.jpg"> -->
+
+        </div>
+    <br><br>
+    {% endblock %}
