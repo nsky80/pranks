@@ -8,7 +8,7 @@ app_name = "main"
 
 urlpatterns = [
 	path('', views.index, name="index"),
-
+	path('about/', views.about, name="about"),
     path('home', views.homepage, name="homepage"),
 	path('home/category<int:quessubject_id>/', views.series, name='series'),
     path('home/category<int:quessubject_id>/<int:subseries_id>/', views.papers, name='papers'),
@@ -16,7 +16,7 @@ urlpatterns = [
 	path('logout', views.logout_request, name="logout"),
 	path('login', views.login_request, name="login"),
 	path('register', views.register, name="register"),
-	path('about/', views.about, name="about"),
+
 	path('community', views.community, name="community"),
 	path('feedback', views.feedback, name="feedback"),
 	path('<single_slug>', views.single_slug, name="single_slug"),
