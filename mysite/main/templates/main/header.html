@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>  
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link href="{% static 'main/css/materialize.css' %}" rel="stylesheet"/>
+		<!-- For icon in menu -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}</style>
+    <script type="text/javascript" src="{% static 'main/js/bin/materialize.min.js' %}"></script>
+    <!-- Configurations of tinymce app -->
+
+    <style>   
+/* Flexible footer */
+      body {
+          display: flex;
+          min-height: 100vh;
+          flex-direction: column;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+    </style>
+</head>
+<body style="background-color: #eeeeee ;">
+  {% include 'main/includes/profile_navbar.html' %}
+	{% include 'main/includes/fixed_action_button.html' %}
+  {% include 'main/includes/messaging.html' %}
+
+  <main>
+	{% block content %}
+  {% endblock %}
+</main>
+  {% block account %}
+  {% endblock %}
+  {% include 'main/includes/footer.html' %}
+  <script type="text/javascript">M.AutoInit();</script>
+</body>
+</html>
