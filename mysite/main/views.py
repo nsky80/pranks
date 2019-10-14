@@ -7,12 +7,24 @@ from django.contrib.sessions.models import Session
 from django.utils import timezone
 from django.http import HttpResponse
 from .forms import FeedbackForm
+from .models import QuesSubject
 
+
+# def series(request, quessubject_id):
+# 	topic_list = QuesSubject.objects.all('category_title')
+# 	return render(request, template_name='main/home.html', context={"subject_list": subject_list})
+
+def homepage(request):
+	return render(request=request, 
+				  template_name="main/home.html",
+				  context={"subject_list": QuesSubject.objects.all()},
+				 )			 
+				
 
 def single_slug(request, single_slug):
 	# First we search any url in category and then series after that main content
     return render(request = request,
-                    template_name='main/essay.html',
+                    template_name='main/home.html',
                     context = {
                                 })
 
@@ -24,6 +36,12 @@ def single_slug(request, single_slug):
 	# 			)
 
 
+# This is first  page which prompt as website opened
+def index(request):
+    return render(request=request, 
+                template_name="main/index.html",
+                )			 
+				
 
 def feedback(request):
 	if request.method == "POST":
@@ -47,7 +65,7 @@ def feedback(request):
 def community(request):
     messages.warning(request, f"For Community Login first!")
     return render(request=request, 
-                template_name="main/community.html",
+                template_name="main/experiment.html",
                 context={},
                 )
 
@@ -82,13 +100,6 @@ def register(request):
 				  context={"form":form}
 				 )
 				 
-
-def homepage(request):
-	return render(request=request, 
-				  template_name="main/home.html",
-				  context={"category":EssayCategory.objects.all}
-				 )			 
-				
 
 def logout_request(request):
 	logout(request)

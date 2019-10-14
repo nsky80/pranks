@@ -1,7 +1,7 @@
 {% extends 'main/header.html' %}
 {% block title %}All Categories | Explore{% endblock %}
 {% block content %}
-
+<!-- It contains all subject list such apt, maths, core etc -->
 <div class="container" >
     <br>
     <div style="max-width:1500px; min-height:100%; background-color: #e0e0e0;padding-top: 10px;">
@@ -13,7 +13,7 @@
             <!-- </div> -->
     <!-- </nav> -->
     <div class="row">
-        {% for cat in category %}
+        {% for cat in subject_list %}
         <!-- size 6 on a large screen, 12 on a small, 6 on a med -->
             <div class="col s12 m6 l4">
                 <a href="{{cat.category_slug}}" class="waves-effect waves-light" style="color:#000">
