@@ -34,7 +34,7 @@ def series(request, quessubject_id):
 
 # List ll papers of topic 
 def papers(request, quessubject_id, subseries_id):
-	sub_papers = get_list_or_404(Paper, pk=subseries_id)
+	sub_papers = get_list_or_404(Paper, series_title_id=subseries_id)
 	return render(request, template_name="main/papers.html", context={'sub_papers': sub_papers, 'topic': get_object_or_404(SubSeries, pk=subseries_id)})
 
 # wrong web address if encounterd
