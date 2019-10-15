@@ -28,7 +28,7 @@ def homepage(request):
 # It contains topics of all subject, subject wise
 def series(request, quessubject_id):
 	quessubject = get_object_or_404(QuesSubject, pk=quessubject_id)
-	ques_subject = get_list_or_404(SubSeries, pk=quessubject_id)
+	ques_subject = get_list_or_404(SubSeries, category_title_id=quessubject_id)
 	# messages.warning(request, quessubject_id.category_title)
 	return render(request, template_name='main/series.html', context={'series': ques_subject, 'quessubject': quessubject})
 
