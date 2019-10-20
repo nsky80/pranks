@@ -67,3 +67,10 @@ class Feedback(models.Model):
 	feedback_date = models.DateTimeField("Feedback Time", default=timezone.now)
 	feedback_content = models.TextField(help_text="Share Your Ideas Here!")
 	feedback_user_id = models.EmailField("Email ID")
+
+# Hit Counter
+class PageCounter(models.Model):
+	cnt = models.IntegerField("Hit Counter", default=0)
+	latest_count = models.DateTimeField("Date Published", default=timezone.now)
+	def __str__(self):
+		return "Total Visits to Animal"

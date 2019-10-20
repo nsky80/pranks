@@ -8,7 +8,7 @@ app_name = "main"
 
 urlpatterns = [
 	path('', views.index, name="index"),
-	path('about/', views.about, name="about"),
+	path('about', views.about, name="about"),
     path('home', views.homepage, name="homepage"),
 	path('home/category<int:quessubject_id>/', views.series, name='series'),
     path('home/category<int:quessubject_id>/<int:subseries_id>/', views.papers, name='papers'),

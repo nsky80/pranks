@@ -7,10 +7,18 @@ from django.contrib.sessions.models import Session
 from django.utils import timezone
 from django.http import HttpResponse
 from .forms import FeedbackForm
-from .models import QuesSubject, SubSeries, Paper, Prank
+from .models import QuesSubject, SubSeries, Paper, Prank, PageCounter
 import random
 
 def horse(request, quessubject_id, subseries_id, horse_slug):
+	# counting hit
+	try:
+		counter = PageCounter.objects.all()[0]
+		counter.cnt += 1
+		counter.latest_count = timezone.now()
+		counter.save()
+	except Exception:
+		pass
 	# generating random images it may replaced with original content
 	source = get_object_or_404(Prank, pk=random.randint(1, 13))
 	messages.success(request, "College wali sheet laga liye ki nahi?")

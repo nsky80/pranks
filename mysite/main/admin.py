@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Feedback, QuesSubject, SubSeries, Paper, Prank
+from .models import Feedback, QuesSubject, SubSeries, Paper, Prank, PageCounter
 
 
 class SubCategoryAdmin(admin.ModelAdmin):
@@ -42,3 +42,4 @@ admin.site.register(QuesSubject, SubCategoryAdmin)
 admin.site.register(SubSeries, SubSeriesAdmin)
 admin.site.register(Paper)
 admin.site.register(Prank)
+admin.site.register(PageCounter)
